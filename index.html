@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Pink Lotus Bloom</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<main class="scene">
+    <svg id="flower-scene"
+         viewBox="0 0 800 620"
+         xmlns="http://www.w3.org/2000/svg">
+
+        <defs>
+            <!-- Gold -->
+            <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#fffbd9"/>
+                <stop offset="45%" stop-color="#f8d477"/>
+                <stop offset="100%" stop-color="#d99129"/>
+            </linearGradient>
+
+            <!-- Outer petal: darker at base, pale at tip -->
+            <linearGradient id="outerPetal" x1="0%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" stop-color="#a80e5b"/>
+                <stop offset="42%" stop-color="#e92782"/>
+                <stop offset="82%" stop-color="#ff70b6"/>
+                <stop offset="100%" stop-color="#ffc0e0"/>
+            </linearGradient>
+
+            <!-- Middle petal -->
+            <linearGradient id="middlePetal" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#b51062"/>
+                <stop offset="42%" stop-color="#ed348b"/>
+                <stop offset="100%" stop-color="#ff9bc9"/>
+            </linearGradient>
+
+            <!-- Inner petal -->
+            <linearGradient id="innerPetal" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#c31468"/>
+                <stop offset="55%" stop-color="#f44998"/>
+                <stop offset="100%" stop-color="#ffb5d7"/>
+            </linearGradient>
+
+            <!-- Front petal -->
+            <linearGradient id="frontPetal" x1="0%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" stop-color="#a80e5b"/>
+                <stop offset="48%" stop-color="#ee3d91"/>
+                <stop offset="100%" stop-color="#ff9dca"/>
+            </linearGradient>
+
+            <!-- Petal edge reflection -->
+            <linearGradient id="petalEdge" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#fff5ff" stop-opacity="0.3"/>
+                <stop offset="50%" stop-color="#ffffff" stop-opacity="0.95"/>
+                <stop offset="100%" stop-color="#ffe3f6" stop-opacity="0.4"/>
+            </linearGradient>
+
+            <!-- Bud -->
+            <linearGradient id="budGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#d36bb4"/>
+                <stop offset="55%" stop-color="#f6b6df"/>
+                <stop offset="100%" stop-color="#fff0fa"/>
+            </linearGradient>
+
+            <!-- Flower centre -->
+            <radialGradient id="lotusCore">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="25%" stop-color="#fff9d7"/>
+                <stop offset="58%" stop-color="#ffd76e"/>
+                <stop offset="100%" stop-color="#ff9c38" stop-opacity="0"/>
+            </radialGradient>
+
+            <!-- Glow filters -->
+            <filter id="goldGlow" x="-100%" y="-100%" width="300%" height="300%">
+                <feGaussianBlur stdDeviation="3" result="blur"/>
+                <feMerge>
+                    <feMergeNode in="blur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+            </filter>
+
+            <filter id="petalGlow" x="-100%" y="-100%" width="300%" height="300%">
+                <feGaussianBlur stdDeviation="1.4" result="blur"/>
+                <feMerge>
+                    <feMergeNode in="blur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+            </filter>
+
+            <filter id="coreGlow" x="-200%" y="-200%" width="500%" height="500%">
+                <feGaussianBlur stdDeviation="12"/>
+            </filter>
+        </defs>
+
+        <!-- Background -->
+        <rect width="800" height="620" fill="#08040d"/>
+
+        <ellipse cx="400" cy="355" rx="290" ry="190"
+                 fill="#d95aaf" opacity="0.07"
+                 filter="url(#coreGlow)"/>
+
+        <!-- Golden arch -->
+        <g id="background-glow"></g>
+        <g id="main-vines"></g>
+        <g id="particles"></g>
+
+        <!-- Stem and leaves -->
+        <g id="lotus-stem"></g>
+
+        <!-- Closed bud -->
+        <g id="lotus-bud"></g>
+
+        <!-- Scale the complete flower head to match the arch span. -->
+        <g id="lotus-bloom" transform="translate(400 350) scale(1.28) translate(-400 -350)">
+            <!-- Petals -->
+            <g id="petal-root" transform="translate(400 350)">
+                <g id="petals"></g>
+            </g>
+
+            <!-- The center sits between the rear and front petal layers. -->
+            <g id="lotus-centre"></g>
+
+            <g id="petal-foreground" transform="translate(400 350)"></g>
+
+            <!-- Flower particles -->
+            <g id="flower-particles"></g>
+        </g>
+
+    </svg>
+</main>
+
+<script src="js/main.js"></script>
+</body>
+</html>
