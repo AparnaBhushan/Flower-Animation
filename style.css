@@ -1,0 +1,484 @@
+
+/* =========================================
+   GLOBAL RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    background: #08040d;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+/* =========================================
+   FLOWER SCENE
+========================================= */
+
+.scene {
+    width: min(100vw, 900px);
+    aspect-ratio: 800 / 620;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#flower-scene {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+/* =========================================
+   BACKGROUND GLOW
+========================================= */
+
+#background-glow {
+    opacity: 1;
+    transition: opacity 3s ease;
+}
+
+#background-glow.arch-hidden {
+    opacity: 0;
+}
+
+/* =========================================
+   GOLDEN ARCH
+========================================= */
+
+#main-vines {
+    opacity: 1;
+    transition: opacity 3s ease;
+}
+
+#main-vines.arch-hidden {
+    opacity: 0;
+}
+
+.main-vine {
+    fill: none;
+
+    stroke: url(#goldGradient);
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    filter: url(#goldGlow);
+
+    stroke-dasharray: 1800;
+    stroke-dashoffset: 1800;
+
+    animation: drawVine 4s ease forwards;
+}
+
+.glow-path {
+    fill: none;
+
+    stroke: #ffca68;
+    stroke-width: 9;
+    stroke-linecap: round;
+
+    opacity: 0.22;
+    filter: blur(9px);
+}
+
+@keyframes drawVine {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* =========================================
+   GOLDEN PARTICLES
+========================================= */
+
+#particles {
+    opacity: 1;
+    transition: opacity 3s ease;
+}
+
+#particles.arch-hidden {
+    opacity: 0;
+}
+
+.particle {
+    fill: #ffe8c7;
+
+    filter: url(#goldGlow);
+
+    opacity: 0;
+
+    transform-box: fill-box;
+    transform-origin: center;
+
+    animation: sparkle 3s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+    0% {
+        opacity: 0.12;
+        transform: scale(0.7);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.3);
+    }
+
+    100% {
+        opacity: 0.12;
+        transform: scale(0.7);
+    }
+}
+
+/* =========================================
+   LOTUS STEM
+========================================= */
+
+.lily-pad {
+    fill: #61bb18;
+    stroke: #1c6b16;
+    stroke-width: 2.5;
+    stroke-linejoin: round;
+    opacity: 0;
+    filter: drop-shadow(0 3px 1px #123c16);
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: leafAppear 1.5s ease forwards;
+}
+
+.stem {
+    fill: none;
+
+    stroke: url(#goldGradient);
+    stroke-width: 3.5;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+
+    filter: url(#goldGlow);
+
+    animation: stemGrow 3s ease forwards;
+}
+
+@keyframes stemGrow {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* =========================================
+   LOTUS LEAVES
+========================================= */
+
+.lotus-leaf {
+    fill: #929e6b;
+
+    stroke: #f8d99a;
+    stroke-width: 1.5;
+
+    opacity: 0;
+
+    filter: url(#goldGlow);
+
+    transform-box: fill-box;
+    transform-origin: center;
+
+    animation: leafAppear 1.5s ease forwards;
+}
+
+@keyframes leafAppear {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    100% {
+        opacity: 0.9;
+        transform: scale(1);
+    }
+}
+
+/* =========================================
+   CLOSED LOTUS BUD
+========================================= */
+
+.bud {
+    fill: url(#budGradient);
+
+    stroke: #fff0fa;
+    stroke-width: 2;
+
+    stroke-linejoin: round;
+
+    filter: url(#petalGlow);
+
+    opacity: 0;
+
+    transform-box: fill-box;
+    transform-origin: center bottom;
+
+    animation: budAppear 2.5s ease forwards;
+}
+
+@keyframes budAppear {
+    0% {
+        opacity: 0;
+        transform: scale(0.1);
+    }
+
+    40% {
+        opacity: 1;
+        transform: scale(0.75);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Bud disappears as the flower opens */
+
+.bud.fade {
+    animation: budFade 1.5s ease forwards;
+}
+
+@keyframes budFade {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0.45);
+    }
+}
+
+/* =========================================
+   PETAL ROOT
+========================================= */
+
+#petal-root {
+    overflow: visible;
+}
+
+#petals {
+    overflow: visible;
+}
+
+/* =========================================
+   OUTER PINK PETALS
+========================================= */
+
+.petal {
+    stroke-linejoin: round;
+    stroke-linecap: round;
+
+    filter: url(#petalGlow);
+
+    vector-effect: non-scaling-stroke;
+}
+
+.petal.outer {
+    fill: url(#outerPetal);
+
+    stroke: #72103f;
+    stroke-width: 2;
+    stroke-opacity: 0.94;
+}
+
+/* =========================================
+   MIDDLE PINK PETALS
+========================================= */
+
+.petal.middle {
+    fill: url(#middlePetal);
+
+    stroke: #771343;
+    stroke-width: 1.9;
+    stroke-opacity: 0.94;
+}
+
+/* =========================================
+   INNER PINK PETALS
+========================================= */
+
+.petal.inner {
+    fill: url(#innerPetal);
+
+    stroke: #78113f;
+    stroke-width: 1.8;
+    stroke-opacity: 0.94;
+}
+
+/* =========================================
+   FRONT / LOWER PETALS
+========================================= */
+
+.petal.front {
+    fill: url(#frontPetal);
+
+    stroke: #72103f;
+    stroke-width: 2;
+    stroke-opacity: 0.96;
+}
+
+/* =========================================
+   PETAL VEINS
+========================================= */
+
+.petal-vein {
+    fill: none;
+
+    stroke: #ffadd3;
+    stroke-width: 1.1;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    opacity: 0.78;
+
+    pointer-events: none;
+}
+
+/* =========================================
+   PETAL REFLECTIVE EDGES
+========================================= */
+
+.petal-shine {
+    fill: none;
+
+    stroke: #fffaff;
+    stroke-width: 1.2;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    opacity: 0.42;
+
+    filter: url(#petalGlow);
+
+    pointer-events: none;
+}
+
+/* =========================================
+   LOTUS CENTRE
+========================================= */
+
+.core-halo {
+    fill: #ffb8e0;
+
+    filter: url(#coreGlow);
+
+    opacity: 0;
+}
+
+.core {
+    fill: url(#lotusCore);
+
+    filter: url(#goldGlow);
+
+    opacity: 0;
+}
+
+.stamen {
+    fill: #fff3ad;
+
+    filter: url(#goldGlow);
+
+    opacity: 0;
+}
+
+.core-crown {
+    fill: #ffe51f;
+    stroke: #a74b13;
+    stroke-width: 1.8;
+    stroke-linejoin: round;
+    filter: url(#goldGlow);
+    opacity: 0;
+}
+
+/* =========================================
+   FLOWER SPARKLES
+========================================= */
+
+.flower-sparkle {
+    fill: #ffe8c7;
+
+    filter: url(#goldGlow);
+
+    opacity: 0;
+
+    transform-box: fill-box;
+    transform-origin: center;
+
+    animation: flowerSparkle 3s ease-in-out infinite;
+}
+
+@keyframes flowerSparkle {
+    0% {
+        opacity: 0.1;
+        transform: scale(0.6);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.4);
+    }
+
+    100% {
+        opacity: 0.1;
+        transform: scale(0.6);
+    }
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 600px) {
+    .scene {
+        width: 100vw;
+    }
+
+    #flower-scene {
+        width: 100%;
+        height: auto;
+    }
+}
+
+/* =========================================
+   REDUCED MOTION ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
